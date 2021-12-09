@@ -1,4 +1,7 @@
 {
-    "university":[
+    "university":[{
+        "name":"name",
+        "domain":"domain"
+    }
     ]
 }

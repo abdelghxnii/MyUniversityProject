@@ -1,5 +1,6 @@
 <?php
 if (isset($_POST["add"])){
+    require 'conn.php';
     $file=$_FILES["logo"];
     $tmp_name = $_FILES["logo"]["tmp_name"];
     $fileName = $_FILES["logo"]["name"];
@@ -9,10 +10,8 @@ if (isset($_POST["add"])){
     $name=$_POST['name'];
     $domain=$_POST['domain'];
 
-    $str = file_get_contents('data/unidata.json');
-    $json = json_decode($str, true);
-    $json['university'][] = array('name'=>$name, 'domain'=>$domain, 'logo'=>$fileName);
-
-    file_put_contents('data/unidata.json', json_encode($json));
-    header("Location: myuni.php");
+    header("Location: index.php?university=added");
+    $sql="insert into university (uniLogo, uniName, uniDomain) values ('$fileName','$name', '$domain')";
+    mysqli_query($conn,$sql);
 }
+?>
